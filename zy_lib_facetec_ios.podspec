@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'zy_lib_facetec_ios'
-  s.version          = '0.0.1'
+  s.version          = '0.0.2'
   s.summary          = 'FaceTecSDK empaquetado por ZyTrust.'
   s.description      = <<-DESC
   Distribucion de FaceTecSDK.xcframework con el archivo de localizacion
@@ -18,6 +18,10 @@ Pod::Spec.new do |s|
   s.resources = ['Sources/zy_lib_facetec_ios.bundle']
   s.swift_versions   = '5.0'
   s.static_framework = true
-    
+  
+  s.frameworks = 'UIKit', 'AVFoundation'
+
+  s.dependency 'zyFaceTecSDK', '0.0.4'
+
 
 end
