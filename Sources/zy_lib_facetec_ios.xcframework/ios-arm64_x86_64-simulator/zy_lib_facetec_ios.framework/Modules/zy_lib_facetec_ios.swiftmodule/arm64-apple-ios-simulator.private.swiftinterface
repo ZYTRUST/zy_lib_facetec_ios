@@ -1,0 +1,268 @@
+// swift-interface-format-version: 1.0
+// swift-compiler-version: Apple Swift version 6.3.3 effective-5.10 (swiftlang-6.3.3.1.3 clang-2100.1.1.101)
+// swift-module-flags: -target arm64-apple-ios13.0-simulator -enable-objc-interop -enable-library-evolution -swift-version 5 -O -enable-experimental-feature DebugDescriptionMacro -enable-bare-slash-regex -module-name zy_lib_facetec_ios
+// swift-module-flags-ignorable: -no-verify-emitted-module-interface -formal-cxx-interoperability-mode=off -interface-compiler-version 6.3.3
+import AVFoundation
+import FaceTecSDK
+import Foundation
+import Swift
+import UIKit
+import _Concurrency
+import _StringProcessing
+import _SwiftConcurrencyShims
+@_exported import zy_lib_facetec_ios
+@_inheritsConvenienceInitializers @objc public class ZyFacetecApiInfo : ObjectiveC.NSObject {
+  @objc public static let NAME: Swift.String
+  @objc public static var VERSION: Swift.String {
+    @objc get
+  }
+  @objc public static var FACETEC_SDK_VERSION: Swift.String {
+    @objc get
+  }
+  @objc override dynamic public init()
+  @objc deinit
+}
+public class ZyFacetecBio {
+  public typealias CallbackFacetec = (zy_lib_facetec_ios.ZyFacetecResult<zy_lib_facetec_ios.ZyFacetecResponse, zy_lib_facetec_ios.ZyFacetecError>) -> Swift.Void
+  public init(onView: UIKit.UIViewController)
+  public func capturar(request: zy_lib_facetec_ios.ZyFacetecRequest, completion: @escaping zy_lib_facetec_ios.ZyFacetecBio.CallbackFacetec)
+  @objc deinit
+}
+public enum SCENE : Swift.String, Swift.CaseIterable {
+  case OCR
+  case FACIAL
+  public init?(rawValue: Swift.String)
+  public typealias AllCases = [zy_lib_facetec_ios.SCENE]
+  public typealias RawValue = Swift.String
+  nonisolated public static var allCases: [zy_lib_facetec_ios.SCENE] {
+    get
+  }
+  public var rawValue: Swift.String {
+    get
+  }
+}
+public struct ZyFacetecRequest {
+  public var scene: zy_lib_facetec_ios.SCENE?
+  public var baseUrl: Swift.String
+  public var deviceKeyIdentifier: Swift.String
+  public var authorizationBearer: Swift.String?
+  public var colors: zy_lib_facetec_ios.ZyFacetecColors?
+  public var timeout: Swift.String?
+  public init()
+}
+public struct ZyFacetecColors {
+  public static let DEFAULT_OUTER_BACKGROUND_COLOR: Swift.String
+  public static let DEFAULT_FRAME_COLOR: Swift.String
+  public static let DEFAULT_BORDER_COLOR: Swift.String
+  public static let DEFAULT_OVAL_COLOR: Swift.String
+  public static let DEFAULT_DUAL_SPINNER_COLOR: Swift.String
+  public static let DEFAULT_TEXT_COLOR: Swift.String
+  public static let DEFAULT_BUTTON_AND_FEEDBACK_BAR_COLOR: Swift.String
+  public static let DEFAULT_BUTTON_AND_FEEDBACK_BAR_TEXT_COLOR: Swift.String
+  public static let DEFAULT_BUTTON_COLOR_HIGHLIGHT: Swift.String
+  public static let DEFAULT_BUTTON_COLOR_DISABLED: Swift.String
+  public var outerBackgroundColor: Swift.String?
+  public var frameColor: Swift.String?
+  public var borderColor: Swift.String?
+  public var ovalColor: Swift.String?
+  public var dualSpinnerColor: Swift.String?
+  public var textColor: Swift.String?
+  public var buttonAndFeedbackBarColor: Swift.String?
+  public var buttonAndFeedbackBarTextColor: Swift.String?
+  public var buttonColorHighlight: Swift.String?
+  public var buttonColorDisabled: Swift.String?
+  public init()
+}
+public enum ZyFacetecResult<T, E> {
+  case success(T)
+  case error(E)
+}
+@_hasMissingDesignatedInitializers public class ZyFacetecResponse {
+  public var coError: Swift.Int {
+    get
+  }
+  public var deError: Swift.String {
+    get
+  }
+  public var launchId: Swift.String? {
+    get
+  }
+  public var idScanSessionId: Swift.String? {
+    get
+  }
+  public var png: Swift.String? {
+    get
+  }
+  public var jsonResponse: Swift.String? {
+    get
+  }
+  public var facetecResponse: zy_lib_facetec_ios.ZyFacetecSessionResponse? {
+    get
+  }
+  public var idFrontImage: Swift.String? {
+    get
+  }
+  public var idBackImage: Swift.String? {
+    get
+  }
+  @objc deinit
+}
+@_hasMissingDesignatedInitializers public class ZyFacetecError {
+  public var coError: Swift.Int {
+    get
+  }
+  public var deError: Swift.String {
+    get
+  }
+  public var deErrorOrigen: Swift.String? {
+    get
+  }
+  public var launchId: Swift.String? {
+    get
+  }
+  public var isSpoof: Swift.Bool {
+    get
+  }
+  public var templateSpoof: Swift.String? {
+    get
+  }
+  public var jsonResponse: Swift.String? {
+    get
+  }
+  @objc deinit
+}
+public struct ZyFacetecSessionResponse : Swift.Decodable {
+  public let responseBlob: Swift.String?
+  public let launchId: Swift.String?
+  public let didError: Swift.Bool?
+  public let success: Swift.Bool?
+  public let resultado: Swift.Bool?
+  public let result: zy_lib_facetec_ios.ZyFacetecSessionResult?
+  public let idScanSessionId: Swift.String?
+  public let idScanResultsSoFar: zy_lib_facetec_ios.ZyFacetecIdScanResults?
+  public let additionalSessionData: zy_lib_facetec_ios.ZyFacetecAdditionalSessionData?
+  public let httpCallInfo: zy_lib_facetec_ios.ZyFacetecHttpCallInfo?
+  public let serverInfo: zy_lib_facetec_ios.ZyFacetecServerInfo?
+  public init(from decoder: any Swift.Decoder) throws
+}
+public struct ZyFacetecSessionResult : Swift.Decodable {
+  public let ageV2GroupEnumInt: Swift.Int?
+  public let livenessProven: Swift.Bool?
+  public let additionalSessionData: zy_lib_facetec_ios.ZyFacetecAdditionalSessionData?
+  public init(from decoder: any Swift.Decoder) throws
+}
+public struct ZyFacetecAdditionalSessionData : Swift.Decodable {
+  public let platform: Swift.String?
+  public let appID: Swift.String?
+  public let installationID: Swift.String?
+  public let deviceModel: Swift.String?
+  public let deviceSDKVersion: Swift.String?
+  public let httpCallInfo: zy_lib_facetec_ios.ZyFacetecHttpCallInfo?
+  public let serverInfo: zy_lib_facetec_ios.ZyFacetecServerInfo?
+  public init(from decoder: any Swift.Decoder) throws
+}
+public struct ZyFacetecHttpCallInfo : Swift.Decodable {
+  public let tid: Swift.String?
+  public let path: Swift.String?
+  public let date: Swift.String?
+  public let epochSecond: Swift.Int64?
+  public let requestMethod: Swift.String?
+  public init(from decoder: any Swift.Decoder) throws
+}
+public struct ZyFacetecServerInfo : Swift.Decodable {
+  public let mode: Swift.String?
+  public let coreServerSDKVersion: Swift.String?
+  public let notice: Swift.String?
+  public init(from decoder: any Swift.Decoder) throws
+}
+public struct ZyFacetecIdScanResults : Swift.Decodable {
+  public let expectedMediaStatusEnumInt: Swift.Int?
+  public let idFacePhotoFoundWithoutQualityIssueDetected: Swift.Bool?
+  public let documentData: zy_lib_facetec_ios.ZyFacetecDocumentData?
+  public let isUniversalIDMode: Swift.Bool?
+  public let photoIDNextStepEnumInt: Swift.Int?
+  public let didMatchIDScanToOCRTemplate: Swift.Bool?
+  public let barcodeStatusEnumInt: Swift.Int?
+  public let idFoundWithoutQualityIssueDetected: Swift.Bool?
+  public let mrzStatusEnumInt: Swift.Int?
+  public let watermarkAndHologramStatusEnumInt: Swift.Int?
+  public let fullIDStatusEnumInt: Swift.Int?
+  public let textOnDocumentStatusEnumInt: Swift.Int?
+  public let nfcStatusEnumInt: Swift.Int?
+  public let unexpectedMediaEncounteredAtLeastOnce: Swift.Bool?
+  public let faceOnDocumentStatusEnumInt: Swift.Int?
+  public let idScanAgeV2GroupEnumInt: Swift.Int?
+  public let nfcAuthenticationStatusEnumInt: Swift.Int?
+  public init(from decoder: any Swift.Decoder) throws
+}
+public struct ZyFacetecDocumentData : Swift.Decodable {
+  public let barcodeValues: zy_lib_facetec_ios.ZyFacetecBarcodeValues?
+  public let mrzValues: zy_lib_facetec_ios.ZyFacetecFieldGroups?
+  public let scannedValues: zy_lib_facetec_ios.ZyFacetecFieldGroups?
+  public let templateInfo: zy_lib_facetec_ios.ZyFacetecTemplateInfo?
+  public func findValue(_ fieldKey: Swift.String) -> Swift.String?
+  public init(from decoder: any Swift.Decoder) throws
+}
+public struct ZyFacetecBarcodeValues : Swift.Decodable {
+  public let rawData: [zy_lib_facetec_ios.ZyFacetecDocumentField]?
+  public init(from decoder: any Swift.Decoder) throws
+}
+public struct ZyFacetecFieldGroups : Swift.Decodable {
+  public let groups: [zy_lib_facetec_ios.ZyFacetecFieldGroup]?
+  public func findValue(_ fieldKey: Swift.String) -> Swift.String?
+  public init(from decoder: any Swift.Decoder) throws
+}
+public struct ZyFacetecFieldGroup : Swift.Decodable {
+  public let fields: [zy_lib_facetec_ios.ZyFacetecDocumentField]?
+  public let groupFriendlyName: Swift.String?
+  public let groupKey: Swift.String?
+  public init(from decoder: any Swift.Decoder) throws
+}
+public struct ZyFacetecDocumentField : Swift.Decodable {
+  public let fieldKey: Swift.String?
+  public let uiFieldType: Swift.String?
+  public let value: Swift.String?
+  public let nonMRZValue: Swift.String?
+  public init(from decoder: any Swift.Decoder) throws
+}
+public struct ZyFacetecTemplateInfo : Swift.Decodable {
+  public let documentCountry: Swift.String?
+  public let documentState: Swift.String?
+  public let templateName: Swift.String?
+  public let templateType: Swift.String?
+  public init(from decoder: any Swift.Decoder) throws
+}
+public enum ZyTErrorEnum : Swift.Int {
+  case EXITO
+  case PERMISO_REQUERIDO
+  case PERMISO_DENIED
+  case CAPTURA_CANCELADA
+  case CAPTURA_FAKE_FACE
+  case INICIALIZACION_ERROR
+  case IMAGE_ERROR_CAPTURA
+  case ERROR_ACCESO
+  case ERROR_LICENCIA_EXPIRADA
+  case ERROR_TIME_OUT
+  case CAPTURA_SAFETYNET_FACE
+  case CAPTURA_TXN_LIMIT_FACE
+  case CAPTURA_LICENCE_EMPTY_FACE
+  case CAPTURA_VALIDACION_FAILED_FACE
+  case CAPTURA_LICENSE_NOT_EXIST_FACE
+  case CAPTURA_LICENSE_SERVER_NOT_CONNECT_FACE
+  case CAPTURA_NETWORK_FACE
+  case ERROR_REQUEST
+  public var descripcion: Swift.String {
+    get
+  }
+  public init?(rawValue: Swift.Int)
+  public typealias RawValue = Swift.Int
+  public var rawValue: Swift.Int {
+    get
+  }
+}
+extension zy_lib_facetec_ios.SCENE : Swift.Equatable {}
+extension zy_lib_facetec_ios.SCENE : Swift.Hashable {}
+extension zy_lib_facetec_ios.SCENE : Swift.RawRepresentable {}
+extension zy_lib_facetec_ios.ZyTErrorEnum : Swift.Equatable {}
+extension zy_lib_facetec_ios.ZyTErrorEnum : Swift.Hashable {}
+extension zy_lib_facetec_ios.ZyTErrorEnum : Swift.RawRepresentable {}
